@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- Import the component -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+
+<model-viewer src="forklift_anim_v01.glb" ios-src="model.usdz" ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" animation-name="forklift_lift" camera-controls camera-orbit="87.24deg 69.11deg 5.421m" field-of-view="40.98deg" auto-rotate="" poster="Change this to your poster URL" shadow-intensity="1">
+    <button class="Hotspot" slot="hotspot-1" data-position="0.5535845868741869m 0.6707925229134151m -1.0057822226889317m" data-normal="0.47012773470679803m 0.8525241513381372m -0.22843485820829462m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Tank</div>
+    </button><button class="Hotspot" slot="hotspot-2" data-position="0.09640365032132431m 1.392210287962008m -0.16903715225915072m" data-normal="0.05985784865355053m 0.837009722929566m -0.5439041842787566m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Lenkrad</div>
+    </button><button class="Hotspot" slot="hotspot-4" data-position="-0.2583701192778068m 2.056740029165641m -1.1248146125233607m" data-normal="1.5988651768163876e-7m 0.08663720769078184m -0.9962399280512293m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Rücklicht</div>
+    </button><button class="Hotspot" slot="hotspot-6" data-position="0.008633898816163865m 0.31688167846014204m -1.68534789500241m" data-normal="0.9510562978880944m 0m -0.3090176665619494m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Anhänger</div>
+    </button>
+
+    
+
+    <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="0" class="slider" id="myRange" orient="vertical">
+      </div>
+
+</model-viewer>
+
+
+<script type="module">
+    const modelViewer = document.querySelector("model-viewer");
+    var slider = document.getElementById("myRange");
+    
+    modelViewer.load = function() {
+        modelViewer.pause();
+    }
+
+    modelViewer.currentTime = slider.value;
+
+    // Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    modelViewer.currentTime = this.value;
+} 
+</script>
+
+
+<style>
+.slidecontainer {
+  width: 30px; /* Width of the outside container */
+  height: 85vh;
+  padding-left: 2%;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: slider-vertical;  /* Override default CSS styles */
+  appearance: none;
+  border-radius: 15px;
+  width: 15px; /* Full-width */
+  height:100%; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 25px;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #1d1d1d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  border-radius: 25px;
+  background: #1d1d1d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+
+.Hotspot {
+    background: #fff;
+    border-radius: 32px;
+    border: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 24px;
+    padding: 8px;
+    position: relative;
+    transition: opacity 0.3s;
+    width: 24px;
+}
+
+.Hotspot:not([data-visible]) {
+    background: transparent;
+    border: 4px solid #fff;
+    box-shadow: none;
+    height: 32px;
+    pointer-events: none;
+    width: 32px;
+}
+
+.Hotspot:focus {
+    border: 4px solid rgb(0, 128, 200);
+    height: 32px;
+    outline: none;
+    width: 32px;
+}
+
+.Hotspot>* {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+.HotspotAnnotation {
+    background: #fff;
+    border-radius: 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+    font-family: Futura, Helvetica Neue, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    left: calc(100% + 1em);
+    max-width: 128px;
+    padding: 0.5em 1em;
+    position: absolute;
+    top: 50%;
+    width: max-content;
+}
+
+.Hotspot:not([data-visible])>* {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(-50% + 4px));
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+model-viewer {
+    margin: 0;
+    width: 100%;
+    height:90vh;
+}
+</style>
+
+
+
+    </body>
+</html>
